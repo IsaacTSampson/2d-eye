@@ -9,7 +9,7 @@ This example demonstrates how to render a 3D-like eye on a 2D canvas, eliminatin
 IMPORTANT - I encourage viewing this on desktop as it has not yet be optimised for mobile devices.
 
 ## Learning sources
-I learnt to draw the ellipses here: https://stackoverflow.com/questions/10035150/html5-canvas-wireframe-sphere-in-2d
+I learnt to draw the ellipses here: https://stackoverflow.com/questions/10035150/html5-canvas-wireframe-sphere-in-2d.
 
 ## How it works
 This code draws an interactive eye that follows the mouse movement by using ellipses to represent the different components of the eye (iris, and pupil). It sets up a 2D canvas, draws the shapes with calculated dimensions, and rotates the entire eye based on the position of the mouse. The eye rolls in response to mouse movements by calculating the angle and distance between the mouse position and the center of the canvas, and then adjusts the drawing angles to simulate the eye "following" the cursor. It restricts the eye's movement to stay within a certain boundary (eyeRollRestriction) and prevents it from rotating too far.
