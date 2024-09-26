@@ -1,4 +1,4 @@
-import './style.css'
+import "./style.css";
 
 const { cos, sin, sqrt, acos, atan2, abs, PI } = Math;
 
@@ -47,12 +47,12 @@ let mouseY: number;
 const length = 250;
 const lineWidth = 2;
 const nbSections = 16;
-const scleraStrokeColor = '#242323';
-const scleraFillColor = '#fcfcfc';
-const irisStrokeColor = '#70bee6';
-const irisFillColor = '#70bee6';
-const pupilStrokeColor = '#242323';
-const pupilFillColor = '#242323';
+const scleraStrokeColor = "#242323";
+const scleraFillColor = "#fcfcfc";
+const irisStrokeColor = "#70bee6";
+const irisFillColor = "#70bee6";
+const pupilStrokeColor = "#242323";
+const pupilFillColor = "#242323";
 const fill = true;
 const effectDistance = 1;
 const eyeRollRestriction = 120;
@@ -60,17 +60,21 @@ const eyeRollRestriction = 120;
 const height: number = length;
 const width: number = length;
 const radius: number = width / 2 - lineWidth;
-const canvasId = 'canvas-id';
-const wrapperId = 'wrapper-id';
+
+const canvasId = "canvas-id";
+const wrapperId = "wrapper-id";
+
+export const elementNotFoundError = (elementId: string) =>
+  new Error(`element with id '${elementId}' not found`);
 
 const wrapper = document.getElementById(wrapperId) as HTMLDivElement | null;
-if(!wrapper) throw new Error('Wrapper element null');
+if (!wrapper) throw elementNotFoundError(wrapperId);
 
 const cvs = document.getElementById(canvasId) as HTMLCanvasElement | null;
-if(!cvs) throw new Error('canvas element null');
+if (!cvs) throw elementNotFoundError(canvasId);
 
 const ctx: CanvasRenderingContext2D | null = cvs.getContext("2d");
-if (!ctx) throw new Error('context null');
+if (!ctx) throw new Error("context null");
 
 const scale: number = window.devicePixelRatio;
 const maxDistanceOfEffect: number =
@@ -130,14 +134,14 @@ ctx.fillStyle = "rgba(255, 255, 255, 0)";
 ctx.lineCap = "round";
 ctx.scale(scale, scale);
 
-const getDistanceXY = (): { distanceX: number, distanceY: number }  => {
-  if(!wrapper)
+const getDistanceXY = (): { distanceX: number; distanceY: number } => {
+  if (!wrapper)
     return {
       distanceX: 0,
-      distanceY: 0
-    }
+      distanceY: 0,
+    };
 
-  const rect = wrapper.getBoundingClientRect()
+  const rect = wrapper.getBoundingClientRect();
 
   const centerX: number = rect.left + rect.width / 2;
   const centerY: number = rect.top + rect.height / 2;
@@ -147,9 +151,9 @@ const getDistanceXY = (): { distanceX: number, distanceY: number }  => {
 
   return {
     distanceX,
-    distanceY
+    distanceY,
   };
-}
+};
 
 function render() {
   if (!ctx) return;
@@ -167,7 +171,7 @@ function render() {
 
   if (angleDegrees < 0) angleDegrees += 360;
 
-  ctx.rotate(-angleDegrees * Math.PI / 180);
+  ctx.rotate((-angleDegrees * Math.PI) / 180);
 
   // fill sclera
   ctx.beginPath();
@@ -226,4 +230,3 @@ wrapper.style.width = `${width}px`;
 wrapper.style.height = `${height}px`;
 
 document.addEventListener("mousemove", onMouseMove);
-
